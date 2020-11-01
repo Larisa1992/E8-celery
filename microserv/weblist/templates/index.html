@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Список адресов для подсчета слов Python</title>
+</head>
+<body>
+	<div>Здесь можно добавить сайт в список задач</div>
+	<form action="{% url 'results' %}" method="POST">
+		{% csrf_token %}
+		<input type="text" name="url_adress" id="url_adress" size="100">
+		<button type="submit">Посчитать</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,5 @@
+__pycache__/
+microserv/__pycache__/*
+microserv/.env
+weblist/__pycache__/*
+*.sqlite3
