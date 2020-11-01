@@ -18,6 +18,7 @@ services:
         ports:
             - "5432:5432"
         environment:
+            - SQL_ENGINE='django.db.backends.postgresql'
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=password
             - POSTGRES_DB=parsing_websites

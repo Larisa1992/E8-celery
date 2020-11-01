@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from weblist.tasks import hello_world, parse_website_text
-from weblist.models import Tasks
+from weblist.tasks import hello_world
+# , parse_website_text
+from weblist.models import TaskPars
 from datetime import datetime
 
 # def index(request):
@@ -20,14 +21,23 @@ class HomePageView(TemplateView):
         return context
         # context["latest_articles"] = Article.objects.all()
 
-# def index(request):
-#     if request.method == 'post':
-#         url_adress = request.form.get('url_adress')
-#         new_task = Tasks(address=url_adress, timestamp=datetime.now(), task_status='NOT_STARTED')
-#         # db.session.add(new_task)
-#         # db.session.commit()
-#         hello_world.delay()
-#     return render(request, "index.html")
+def index(request):
+    if request.method == 'post':
+        url_adress = request.form.get('url_adress')
+        new_task = TaskPars(address=url_adress, timestamp=datetime.now(), task_status='NOT_STARTED')
+        new_task.save()
+
+         # db.session.add(new_task)
+         # db.session.commit()
+        hello_world.delay()
+        print('index post')
+        data = {'tt': 'index post' }
+        # return render(request, "index.html", context= data)
+        redirect('/index/')
+    data = {'tt': 'index get' }
+    return render(request, "index.html", context= data)
 
 def results(request):
-    return render(request, "results.html")
+    object_list = TaskPars.objects.all()
+
+    return render(request, "results.html", context = {"object_list": object_list })

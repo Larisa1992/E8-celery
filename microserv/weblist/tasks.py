@@ -4,7 +4,6 @@ from microserv.celery import app
 
 from time import sleep
 
-
 # @shared_task
 @app.task
 def hello_world():
@@ -12,23 +11,23 @@ def hello_world():
   print('Hello World')
   return('Hello celery')
 
-@app.task
-def parse_website_text(_id):
-    task = Tasks.query.get(_id)
-    task.task_status = 'PENDING'
-    db.session.commit()
-    address = task.address
-    if not (address.startswith('http') and  address.startswith('https')):
-        address = 'http://' + address
-    with app.app_context():
-        res = requests.get(address) 
-        words_count=0
-        if res.ok:
-            words = res.text.split()
-            words_count = words.count("Python")
+# @app.task
+# def parse_website_text(_id):
+#     task = Tasks.query.get(_id)
+#     task.task_status = 'PENDING'
+#     db.session.commit()
+#     address = task.address
+#     if not (address.startswith('http') and  address.startswith('https')):
+#         address = 'http://' + address
+#     with app.app_context():
+#         res = requests.get(address) 
+#         words_count=0
+#         if res.ok:
+#             words = res.text.split()
+#             words_count = words.count("Python")
             
-        result = Results(address=address, words_count=words_count, http_status_code=res.status_code)
-        task = Tasks.query.get(_id)
-        task.task_status = 'FINISHED'
-        db.session.add(result)
-        db.session.commit()
+#         result = Results(address=address, words_count=words_count, http_status_code=res.status_code)
+#         task = Tasks.query.get(_id)
+#         task.task_status = 'FINISHED'
+#         db.session.add(result)
+#         db.session.commit()

@@ -13,7 +13,7 @@ class Results(models.Model):
     http_status_code = models.IntegerField()
 
 
-class Tasks(models.Model):
+class TaskPars(models.Model):
     
     NOT_STARTED = 1
     PENDING = 2
@@ -27,5 +27,5 @@ class Tasks(models.Model):
     address = models.CharField(max_length=255,  null=True)
     timestamp = models.DateField()
     task_status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, default=NOT_STARTED)
-    # task_status = models.Column(Enum(TaskStatus))
-    http_status = models.IntegerField()
+    #task_status = models.Column(Enum(TaskStatus))
+    http_status = models.IntegerField(default=200)
