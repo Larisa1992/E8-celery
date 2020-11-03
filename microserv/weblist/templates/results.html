@@ -8,15 +8,18 @@
 	<h3>Результаты подсчета слов Python</h3>
 
 	<table border="1">
-		{% for task in object_list %}
-			<tr>
-				<td>{{ task.address }}</td>
-				<td>{{ task.task_status }}</td>
-			</tr>
+		<tr>
+			<th>URL address </td>
+			<th>words_count</td>
+			<th>http status code</td>
+		</tr>
+		{% for res in object_list %}	
+		<tr>
+			<td>{{ res.address }}</td>
+			<td>{{ res.words_count }}</td>
+			<td>{{ res.http_status_code }}</td>
+		</tr>
 		{% endfor %}
 	</table>
-
 </body>
 </html>
-
-

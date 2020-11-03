@@ -7,11 +7,10 @@ from django.db import models
 # db = databases.get("default")
 
 class Results(models.Model):
-    id =  models.IntegerField(primary_key=True)
+    # id =  models.IntegerField(primary_key=True)
     address = models.CharField(max_length=255,  null=True)
     words_count = models.IntegerField(null=True)
     http_status_code = models.IntegerField()
-
 
 class TaskPars(models.Model):
     
@@ -23,9 +22,9 @@ class TaskPars(models.Model):
         (PENDING, 'PENDING'),
         (FINISHED, 'FINISHED'),
     )
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True)
     address = models.CharField(max_length=255,  null=True)
-    timestamp = models.DateField()
+    timestamp = models.DateTimeField()
     task_status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, default=NOT_STARTED)
     #task_status = models.Column(Enum(TaskStatus))
     http_status = models.IntegerField(default=200)
