@@ -19,6 +19,6 @@ from weblist.views import results, index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', index, name='index_'),
+    path('index/', index, name='index'),
     path('result/', results, name='results'),
 ]

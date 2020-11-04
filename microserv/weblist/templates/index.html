@@ -6,11 +6,10 @@
 </head>
 <body>
 	<div>Здесь можно добавить сайт в список задач</div>
-	<form action="{% url 'index_' %}" method="POST">
+	<form action="{% url 'index' %}" method="POST">
 		{% csrf_token %}
 		<input type="text" name="url_adress" id="url_adress" size="100">
 		<button type="submit">Посчитать</button>
 	</form>
-	<div> {{ tt }} </div>
 </body>
 </html>

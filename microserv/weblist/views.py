@@ -11,9 +11,7 @@ def index(request):
         new_task = TaskPars(address=url_adress, timestamp=timezone.now(), task_status=1)
         new_task.save()
         parse_website_text.delay(new_task.pk)
-        data = {'tt': 'index post' }
-    data = {'tt': 'index get' }
-    return render(request, "index.html", context= data)
+    return render(request, "index.html")
 
 def results(request):
     object_list = Results.objects.all()
